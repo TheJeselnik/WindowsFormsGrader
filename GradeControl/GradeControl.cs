@@ -31,5 +31,10 @@ namespace GradeControl
         {
             this.onControlUpdated();
         }
+
+        private void checkUncheckAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.onControlUpdated();
+        }
     }
 }
