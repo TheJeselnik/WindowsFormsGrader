@@ -37,7 +37,8 @@
             this.gradePercentLabel = new System.Windows.Forms.Label();
             this.gradePercentUpDown = new System.Windows.Forms.NumericUpDown();
             this.gradeGridContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.checkUncheckAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uncheckAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gradeGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gradePercentUpDown)).BeginInit();
             this.gradeGridContextMenu.SuspendLayout();
@@ -64,9 +65,9 @@
             this.gradeGridView.Name = "gradeGridView";
             this.gradeGridView.Size = new System.Drawing.Size(355, 225);
             this.gradeGridView.TabIndex = 1;
-            this.gradeGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.gradeDataGridView_CellValueChanged);
-            this.gradeGridView.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.gradeDataGridView_UserAddedRow);
-            this.gradeGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.gradeDataGridView_UserDeletedRow);
+            this.gradeGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.gradeGridView_CellValueChanged);
+            this.gradeGridView.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.gradeGridView_UserAddedRow);
+            this.gradeGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.gradeGridView_UserDeletedRow);
             // 
             // includedCheckBoxColumn
             // 
@@ -107,16 +108,24 @@
             // gradeGridContextMenu
             // 
             this.gradeGridContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.checkUncheckAllToolStripMenuItem});
+            this.checkAllToolStripMenuItem,
+            this.uncheckAllToolStripMenuItem});
             this.gradeGridContextMenu.Name = "contextMenuStrip1";
-            this.gradeGridContextMenu.Size = new System.Drawing.Size(182, 48);
+            this.gradeGridContextMenu.Size = new System.Drawing.Size(138, 48);
             // 
-            // checkUncheckAllToolStripMenuItem
+            // checkAllToolStripMenuItem
             // 
-            this.checkUncheckAllToolStripMenuItem.Name = "checkUncheckAllToolStripMenuItem";
-            this.checkUncheckAllToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.checkUncheckAllToolStripMenuItem.Text = "Check / Uncheck All";
-            this.checkUncheckAllToolStripMenuItem.Click += new System.EventHandler(this.checkUncheckAllToolStripMenuItem_Click);
+            this.checkAllToolStripMenuItem.Name = "checkAllToolStripMenuItem";
+            this.checkAllToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.checkAllToolStripMenuItem.Text = "Check All";
+            this.checkAllToolStripMenuItem.Click += new System.EventHandler(this.checkUncheckAllToolStripMenuItem_Click);
+            // 
+            // uncheckAllToolStripMenuItem
+            // 
+            this.uncheckAllToolStripMenuItem.Name = "uncheckAllToolStripMenuItem";
+            this.uncheckAllToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.uncheckAllToolStripMenuItem.Text = "Uncheck All";
+            this.uncheckAllToolStripMenuItem.Click += new System.EventHandler(this.uncheckAllToolStripMenuItem_Click);
             // 
             // GradeControl
             // 
@@ -146,6 +155,7 @@
         private System.Windows.Forms.Label gradePercentLabel;
         private System.Windows.Forms.NumericUpDown gradePercentUpDown;
         private System.Windows.Forms.ContextMenuStrip gradeGridContextMenu;
-        private System.Windows.Forms.ToolStripMenuItem checkUncheckAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem checkAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem uncheckAllToolStripMenuItem;
     }
 }

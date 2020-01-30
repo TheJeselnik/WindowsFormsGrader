@@ -2,9 +2,9 @@
 
 namespace Grade_Calculator
 {
-    public partial class Form1 : Form
+    public partial class GradeCalculatorForm : Form
     {
-        public Form1()
+        public GradeCalculatorForm()
         {
             this.InitializeComponent();
         }
