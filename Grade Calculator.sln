@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GradeControl", "GradeControl\GradeControl.csproj", "{26E5A121-D9F7-4078-BBE1-9510D6809B67}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{26E5A121-D9F7-4078-BBE1-9510D6809B67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26E5A121-D9F7-4078-BBE1-9510D6809B67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26E5A121-D9F7-4078-BBE1-9510D6809B67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26E5A121-D9F7-4078-BBE1-9510D6809B67}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E0A13B90-F9F3-4243-A2CB-ED63CCD2C0B7}
+	EndGlobalSection
+EndGlobal
