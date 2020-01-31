@@ -30,11 +30,13 @@
         {
             this.categoryTabControl = new System.Windows.Forms.TabControl();
             this.assignmentsTabPage = new System.Windows.Forms.TabPage();
-            this.assignmentGradeControl = new GradeControl.GradeControl();
             this.quizTabPage = new System.Windows.Forms.TabPage();
             this.examTabPage = new System.Windows.Forms.TabPage();
             this.categoriesLabel = new System.Windows.Forms.Label();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.outputSummaryLabel = new System.Windows.Forms.Label();
+            this.outputSummaryTextBox = new System.Windows.Forms.TextBox();
+            this.assignmentGradeControl = new GradeControl.GradeControl();
             this.quizGradeControl = new GradeControl.GradeControl();
             this.examGradeControl = new GradeControl.GradeControl();
             this.categoryTabControl.SuspendLayout();
@@ -64,13 +66,6 @@
             this.assignmentsTabPage.TabIndex = 0;
             this.assignmentsTabPage.Text = "Assignments";
             this.assignmentsTabPage.UseVisualStyleBackColor = true;
-            // 
-            // assignmentGradeControl
-            // 
-            this.assignmentGradeControl.Location = new System.Drawing.Point(0, 0);
-            this.assignmentGradeControl.Name = "assignmentGradeControl";
-            this.assignmentGradeControl.Size = new System.Drawing.Size(361, 271);
-            this.assignmentGradeControl.TabIndex = 0;
             // 
             // quizTabPage
             // 
@@ -111,6 +106,31 @@
             this.menuStrip.TabIndex = 2;
             this.menuStrip.Text = "Menu";
             // 
+            // outputSummaryLabel
+            // 
+            this.outputSummaryLabel.AutoSize = true;
+            this.outputSummaryLabel.Location = new System.Drawing.Point(12, 327);
+            this.outputSummaryLabel.Name = "outputSummaryLabel";
+            this.outputSummaryLabel.Size = new System.Drawing.Size(82, 13);
+            this.outputSummaryLabel.TabIndex = 3;
+            this.outputSummaryLabel.Text = "Grade Summary";
+            // 
+            // outputSummaryTextBox
+            // 
+            this.outputSummaryTextBox.Location = new System.Drawing.Point(12, 343);
+            this.outputSummaryTextBox.Multiline = true;
+            this.outputSummaryTextBox.Name = "outputSummaryTextBox";
+            this.outputSummaryTextBox.ReadOnly = true;
+            this.outputSummaryTextBox.Size = new System.Drawing.Size(365, 251);
+            this.outputSummaryTextBox.TabIndex = 4;
+            // 
+            // assignmentGradeControl
+            // 
+            this.assignmentGradeControl.Location = new System.Drawing.Point(0, 0);
+            this.assignmentGradeControl.Name = "assignmentGradeControl";
+            this.assignmentGradeControl.Size = new System.Drawing.Size(361, 271);
+            this.assignmentGradeControl.TabIndex = 0;
+            // 
             // quizGradeControl
             // 
             this.quizGradeControl.Location = new System.Drawing.Point(0, 0);
@@ -129,13 +149,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(391, 479);
+            this.ClientSize = new System.Drawing.Size(391, 606);
+            this.Controls.Add(this.outputSummaryTextBox);
+            this.Controls.Add(this.outputSummaryLabel);
             this.Controls.Add(this.categoriesLabel);
             this.Controls.Add(this.categoryTabControl);
             this.Controls.Add(this.menuStrip);
             this.MainMenuStrip = this.menuStrip;
             this.Name = "GradeCalculatorForm";
-            this.Text = "Form1";
+            this.Text = "Grade Calculator by Daniel Jeselnik";
             this.categoryTabControl.ResumeLayout(false);
             this.assignmentsTabPage.ResumeLayout(false);
             this.quizTabPage.ResumeLayout(false);
@@ -156,6 +178,8 @@
         private GradeControl.GradeControl assignmentGradeControl;
         private GradeControl.GradeControl quizGradeControl;
         private GradeControl.GradeControl examGradeControl;
+        private System.Windows.Forms.Label outputSummaryLabel;
+        private System.Windows.Forms.TextBox outputSummaryTextBox;
     }
 }
 
