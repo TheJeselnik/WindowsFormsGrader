@@ -101,7 +101,7 @@
             this.gradePercentUpDown.Location = new System.Drawing.Point(221, 247);
             this.gradePercentUpDown.Name = "gradePercentUpDown";
             this.gradePercentUpDown.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.gradePercentUpDown.Size = new System.Drawing.Size(48, 20);
+            this.gradePercentUpDown.Size = new System.Drawing.Size(42, 20);
             this.gradePercentUpDown.TabIndex = 3;
             this.gradePercentUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 

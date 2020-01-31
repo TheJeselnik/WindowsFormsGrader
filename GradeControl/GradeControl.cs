@@ -10,6 +10,18 @@ namespace GradeControl
     /// <seealso cref="System.Windows.Forms.UserControl" />
     public partial class GradeControl : UserControl
     {
+        #region Properties
+
+        /// <summary>
+        ///     Gets the grade total for the control category.
+        /// </summary>
+        /// <value>
+        ///     The grade total for the control category.
+        /// </value>
+        public double GradeTotal => this.getGradeTotal();
+
+        #endregion
+
         #region Constructors
 
         /// <summary>
@@ -28,6 +40,21 @@ namespace GradeControl
         ///     Occurs when [control updated].
         /// </summary>
         public event EventHandler ControlUpdated;
+
+        private double getGradeTotal()
+        {
+            var gradeTotal = 0.0;
+            foreach (DataGridViewRow row in this.gradeGridView.Rows)
+            {
+                var checkBoxCell = (DataGridViewCheckBoxCell) row.Cells[0];
+                if (Convert.ToBoolean(checkBoxCell.EditedFormattedValue))
+                {
+                    gradeTotal += Convert.ToDouble(row.Cells[1].Value);
+                }
+            }
+
+            return gradeTotal;
+        }
 
         private void onControlUpdated()
         {
@@ -65,9 +92,9 @@ namespace GradeControl
         {
             foreach (DataGridViewRow row in this.gradeGridView.Rows)
             {
-                var cell = (DataGridViewCheckBoxCell)row.Cells[0];
+                var checkBoxCell = (DataGridViewCheckBoxCell) row.Cells[0];
 
-                cell.Value = true;
+                checkBoxCell.Value = true;
             }
         }
 
@@ -75,9 +102,9 @@ namespace GradeControl
         {
             foreach (DataGridViewRow row in this.gradeGridView.Rows)
             {
-                var cell = (DataGridViewCheckBoxCell)row.Cells[0];
+                var checkBoxCell = (DataGridViewCheckBoxCell) row.Cells[0];
 
-                cell.Value = false;
+                checkBoxCell.Value = false;
             }
         }
 
