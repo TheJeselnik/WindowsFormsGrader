@@ -67,6 +67,7 @@
     <Compile Include="GradeCalculatorForm.Designer.cs">
       <DependentUpon>GradeCalculatorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FileManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="GradeCalculatorForm.resx">
@@ -111,6 +112,9 @@
       <Project>{26E5A121-D9F7-4078-BBE1-9510D6809B67}</Project>
       <Name>GradeControl</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
