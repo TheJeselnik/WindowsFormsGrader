@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace GradeControl
 {
     /// <summary>
-    ///     Control for calculating grades of a category and selecting the weight
+    ///     Control for entering grades of a category and selecting the weight
     ///     its included grades contribute to the overall grade.
     /// </summary>
     /// <seealso cref="System.Windows.Forms.UserControl" />
@@ -15,12 +14,20 @@ namespace GradeControl
         #region Properties
 
         /// <summary>
-        ///     Gets the grade for the control category.
+        ///     Gets the grade entries for the control's category.
         /// </summary>
         /// <value>
-        ///     The grade for the control category.
+        ///     The grade entries for the control's category.
         /// </value>
-        public double Grade => this.getGradeAverage();
+        public Dictionary<double, string> GradeEntries => this.getGradeEntries();
+
+        /// <summary>
+        /// Gets the weight for the control's category.
+        /// </summary>
+        /// <value>
+        /// The weight for the control's category.
+        /// </value>
+        public int Weight => (int) this.gradeWeightUpDown.Value;
 
         #endregion
 
@@ -39,23 +46,47 @@ namespace GradeControl
         #region Methods
 
         /// <summary>
-        ///     Occurs when [control updated].
+        ///     Occurs when the control is updated.
         /// </summary>
         public event EventHandler ControlUpdated;
 
-        private double getGradeAverage()
+        private Dictionary<double, string> getGradeEntries()
         {
-            IList<double> gradeEntries = new List<double>();
+            var gradeDictionary = new Dictionary<double, string>();
+
             foreach (DataGridViewRow row in this.gradeGridView.Rows)
             {
                 var checkBoxCell = (DataGridViewCheckBoxCell) row.Cells[0];
+                var gradeCell = Convert.ToDouble(row.Cells[1].Value);
+                var descriptionCell = row.Cells[2].Value.ToString();
+
                 if (Convert.ToBoolean(checkBoxCell.EditedFormattedValue))
                 {
-                    gradeEntries.Add(Convert.ToDouble(row.Cells[1].Value));
+                    gradeDictionary.Add(gradeCell, descriptionCell);
                 }
             }
 
-            return gradeEntries.Average();
+            return gradeDictionary;
+        }
+
+        private void checkAllGrades()
+        {
+            foreach (DataGridViewRow row in this.gradeGridView.Rows)
+            {
+                var checkBoxCell = (DataGridViewCheckBoxCell)row.Cells[0];
+
+                checkBoxCell.Value = true;
+            }
+        }
+
+        private void uncheckAllGrades()
+        {
+            foreach (DataGridViewRow row in this.gradeGridView.Rows)
+            {
+                var checkBoxCell = (DataGridViewCheckBoxCell)row.Cells[0];
+
+                checkBoxCell.Value = false;
+            }
         }
 
         private void onControlUpdated()
@@ -78,6 +109,11 @@ namespace GradeControl
             this.onControlUpdated();
         }
 
+        private void gradePercentUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            this.onControlUpdated();
+        }
+
         private void checkUncheckAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.checkAllGrades();
@@ -88,26 +124,6 @@ namespace GradeControl
         {
             this.uncheckAllGrades();
             this.onControlUpdated();
-        }
-
-        private void checkAllGrades()
-        {
-            foreach (DataGridViewRow row in this.gradeGridView.Rows)
-            {
-                var checkBoxCell = (DataGridViewCheckBoxCell) row.Cells[0];
-
-                checkBoxCell.Value = true;
-            }
-        }
-
-        private void uncheckAllGrades()
-        {
-            foreach (DataGridViewRow row in this.gradeGridView.Rows)
-            {
-                var checkBoxCell = (DataGridViewCheckBoxCell) row.Cells[0];
-
-                checkBoxCell.Value = false;
-            }
         }
 
         #endregion

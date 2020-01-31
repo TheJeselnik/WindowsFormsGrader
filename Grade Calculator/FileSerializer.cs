@@ -3,9 +3,9 @@
 namespace Grade_Calculator
 {
     /// <summary>
-    ///     Manages loading and saving files using XML Serialization
+    ///     Loads and saves files using XML Serialization
     /// </summary>
-    public class FileManager
+    public class FileSerializer
     {
         #region Methods
 

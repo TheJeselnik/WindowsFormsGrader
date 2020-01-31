@@ -38,10 +38,10 @@
             this.checkAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uncheckAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gradePercentLabel = new System.Windows.Forms.Label();
-            this.gradePercentUpDown = new System.Windows.Forms.NumericUpDown();
+            this.gradeWeightUpDown = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.gradeGridView)).BeginInit();
             this.gradeGridContextMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gradePercentUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gradeWeightUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // assessedItemsLabel
@@ -118,20 +118,22 @@
             this.gradePercentLabel.TabIndex = 2;
             this.gradePercentLabel.Text = "Percentage of overall grade:";
             // 
-            // gradePercentUpDown
+            // gradeWeightUpDown
             // 
-            this.gradePercentUpDown.Location = new System.Drawing.Point(221, 247);
-            this.gradePercentUpDown.Name = "gradePercentUpDown";
-            this.gradePercentUpDown.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.gradePercentUpDown.Size = new System.Drawing.Size(42, 20);
-            this.gradePercentUpDown.TabIndex = 3;
-            this.gradePercentUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.gradeWeightUpDown.DecimalPlaces = 2;
+            this.gradeWeightUpDown.Location = new System.Drawing.Point(215, 247);
+            this.gradeWeightUpDown.Name = "gradeWeightUpDown";
+            this.gradeWeightUpDown.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.gradeWeightUpDown.Size = new System.Drawing.Size(56, 20);
+            this.gradeWeightUpDown.TabIndex = 3;
+            this.gradeWeightUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.gradeWeightUpDown.ValueChanged += new System.EventHandler(this.gradePercentUpDown_ValueChanged);
             // 
             // GradeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.gradePercentUpDown);
+            this.Controls.Add(this.gradeWeightUpDown);
             this.Controls.Add(this.gradePercentLabel);
             this.Controls.Add(this.gradeGridView);
             this.Controls.Add(this.assessedItemsLabel);
@@ -139,7 +141,7 @@
             this.Size = new System.Drawing.Size(361, 271);
             ((System.ComponentModel.ISupportInitialize)(this.gradeGridView)).EndInit();
             this.gradeGridContextMenu.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gradePercentUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gradeWeightUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -153,7 +155,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn gradeTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn descriptionTextBoxColumn;
         private System.Windows.Forms.Label gradePercentLabel;
-        private System.Windows.Forms.NumericUpDown gradePercentUpDown;
+        private System.Windows.Forms.NumericUpDown gradeWeightUpDown;
         private System.Windows.Forms.ContextMenuStrip gradeGridContextMenu;
         private System.Windows.Forms.ToolStripMenuItem checkAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uncheckAllToolStripMenuItem;
