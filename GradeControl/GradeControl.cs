@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace GradeControl
@@ -13,12 +15,12 @@ namespace GradeControl
         #region Properties
 
         /// <summary>
-        ///     Gets the grade total for the control category.
+        ///     Gets the grade for the control category.
         /// </summary>
         /// <value>
-        ///     The grade total for the control category.
+        ///     The grade for the control category.
         /// </value>
-        public double GradeTotal => this.getGradeTotal();
+        public double Grade => this.getGradeAverage();
 
         #endregion
 
@@ -41,19 +43,19 @@ namespace GradeControl
         /// </summary>
         public event EventHandler ControlUpdated;
 
-        private double getGradeTotal()
+        private double getGradeAverage()
         {
-            var gradeTotal = 0.0;
+            IList<double> gradeEntries = new List<double>();
             foreach (DataGridViewRow row in this.gradeGridView.Rows)
             {
                 var checkBoxCell = (DataGridViewCheckBoxCell) row.Cells[0];
                 if (Convert.ToBoolean(checkBoxCell.EditedFormattedValue))
                 {
-                    gradeTotal += Convert.ToDouble(row.Cells[1].Value);
+                    gradeEntries.Add(Convert.ToDouble(row.Cells[1].Value));
                 }
             }
 
-            return gradeTotal;
+            return gradeEntries.Average();
         }
 
         private void onControlUpdated()

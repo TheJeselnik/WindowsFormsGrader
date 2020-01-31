@@ -34,14 +34,14 @@
             this.includedCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.gradeTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gradePercentLabel = new System.Windows.Forms.Label();
-            this.gradePercentUpDown = new System.Windows.Forms.NumericUpDown();
             this.gradeGridContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.checkAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uncheckAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gradePercentLabel = new System.Windows.Forms.Label();
+            this.gradePercentUpDown = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.gradeGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gradePercentUpDown)).BeginInit();
             this.gradeGridContextMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gradePercentUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // assessedItemsLabel
@@ -87,24 +87,6 @@
             this.descriptionTextBoxColumn.Name = "descriptionTextBoxColumn";
             this.descriptionTextBoxColumn.Width = 200;
             // 
-            // gradePercentLabel
-            // 
-            this.gradePercentLabel.AutoSize = true;
-            this.gradePercentLabel.Location = new System.Drawing.Point(74, 250);
-            this.gradePercentLabel.Name = "gradePercentLabel";
-            this.gradePercentLabel.Size = new System.Drawing.Size(141, 13);
-            this.gradePercentLabel.TabIndex = 2;
-            this.gradePercentLabel.Text = "Percentage of overall grade:";
-            // 
-            // gradePercentUpDown
-            // 
-            this.gradePercentUpDown.Location = new System.Drawing.Point(221, 247);
-            this.gradePercentUpDown.Name = "gradePercentUpDown";
-            this.gradePercentUpDown.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.gradePercentUpDown.Size = new System.Drawing.Size(42, 20);
-            this.gradePercentUpDown.TabIndex = 3;
-            this.gradePercentUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // gradeGridContextMenu
             // 
             this.gradeGridContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -127,6 +109,24 @@
             this.uncheckAllToolStripMenuItem.Text = "Uncheck All";
             this.uncheckAllToolStripMenuItem.Click += new System.EventHandler(this.uncheckAllToolStripMenuItem_Click);
             // 
+            // gradePercentLabel
+            // 
+            this.gradePercentLabel.AutoSize = true;
+            this.gradePercentLabel.Location = new System.Drawing.Point(74, 250);
+            this.gradePercentLabel.Name = "gradePercentLabel";
+            this.gradePercentLabel.Size = new System.Drawing.Size(141, 13);
+            this.gradePercentLabel.TabIndex = 2;
+            this.gradePercentLabel.Text = "Percentage of overall grade:";
+            // 
+            // gradePercentUpDown
+            // 
+            this.gradePercentUpDown.Location = new System.Drawing.Point(221, 247);
+            this.gradePercentUpDown.Name = "gradePercentUpDown";
+            this.gradePercentUpDown.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.gradePercentUpDown.Size = new System.Drawing.Size(42, 20);
+            this.gradePercentUpDown.TabIndex = 3;
+            this.gradePercentUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // GradeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -138,8 +138,8 @@
             this.Name = "GradeControl";
             this.Size = new System.Drawing.Size(361, 271);
             ((System.ComponentModel.ISupportInitialize)(this.gradeGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gradePercentUpDown)).EndInit();
             this.gradeGridContextMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gradePercentUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
