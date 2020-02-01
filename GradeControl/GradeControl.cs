@@ -14,18 +14,26 @@ namespace GradeControl
         #region Properties
 
         /// <summary>
-        ///     Gets the grade entries for the control's category.
+        ///     Gets the grade values.
         /// </summary>
         /// <value>
-        ///     The grade entries for the control's category.
+        ///     The grade values.
         /// </value>
-        public Dictionary<double, string> GradeEntries => this.getGradeEntries();
+        public IList<double> GradeValues => this.getGradeValues();
 
         /// <summary>
-        /// Gets the weight for the control's category.
+        ///     Gets the grade descriptions.
         /// </summary>
         /// <value>
-        /// The weight for the control's category.
+        ///     The grade descriptions.
+        /// </value>
+        public IList<string> GradeDescriptions => this.getGradeDescriptions();
+
+        /// <summary>
+        ///     Gets the weight for the control's category.
+        /// </summary>
+        /// <value>
+        ///     The weight for the control's category.
         /// </value>
         public int Weight => (int) this.gradeWeightUpDown.Value;
 
@@ -50,30 +58,47 @@ namespace GradeControl
         /// </summary>
         public event EventHandler ControlUpdated;
 
-        private Dictionary<double, string> getGradeEntries()
+        private IList<double> getGradeValues()
         {
-            var gradeDictionary = new Dictionary<double, string>();
+            var gradeValues = new List<double>();
 
             foreach (DataGridViewRow row in this.gradeGridView.Rows)
             {
                 var checkBoxCell = (DataGridViewCheckBoxCell) row.Cells[0];
-                var gradeCell = (double?)Convert.ToDouble(row.Cells[1].Value ?? 100.0);
+                var gradeCell = (double?) Convert.ToDouble(row.Cells[1].Value ?? 0.0);
+
+                if (Convert.ToBoolean(checkBoxCell.EditedFormattedValue))
+                {
+                    gradeValues.Add((double) gradeCell);
+                }
+            }
+
+            return gradeValues;
+        }
+
+        private List<string> getGradeDescriptions()
+        {
+            var gradeDescriptions = new List<string>();
+
+            foreach (DataGridViewRow row in this.gradeGridView.Rows)
+            {
+                var checkBoxCell = (DataGridViewCheckBoxCell) row.Cells[0];
                 var descriptionCell = row.Cells[2].Value as string;
 
                 if (Convert.ToBoolean(checkBoxCell.EditedFormattedValue))
                 {
-                    gradeDictionary.Add((double) gradeCell, descriptionCell);
+                    gradeDescriptions.Add(descriptionCell);
                 }
             }
 
-            return gradeDictionary;
+            return gradeDescriptions;
         }
 
         private void checkAllGrades()
         {
             foreach (DataGridViewRow row in this.gradeGridView.Rows)
             {
-                var checkBoxCell = (DataGridViewCheckBoxCell)row.Cells[0];
+                var checkBoxCell = (DataGridViewCheckBoxCell) row.Cells[0];
 
                 checkBoxCell.Value = true;
             }
@@ -83,7 +108,7 @@ namespace GradeControl
         {
             foreach (DataGridViewRow row in this.gradeGridView.Rows)
             {
-                var checkBoxCell = (DataGridViewCheckBoxCell)row.Cells[0];
+                var checkBoxCell = (DataGridViewCheckBoxCell) row.Cells[0];
 
                 checkBoxCell.Value = false;
             }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace Grade_Calculator
@@ -11,28 +10,52 @@ namespace Grade_Calculator
     public class SummaryWriter
     {
         /// <summary>
-        /// Gets or sets the assignment grade entries.
+        /// Gets or sets the assignment grades.
         /// </summary>
         /// <value>
-        /// The assignment grade entries.
+        /// The assignment grades.
         /// </value>
-        public Dictionary<double, string> AssignmentGradeEntries { get; set; }
+        public IList<double> AssignmentGrades { get; set; }
 
         /// <summary>
-        /// Gets or sets the quiz grade entries.
+        /// Gets or sets the assignment descriptions.
         /// </summary>
         /// <value>
-        /// The quiz grade entries.
+        /// The assignment descriptions.
         /// </value>
-        public Dictionary<double, string> QuizGradeEntries { get; set; }
+        public IList<string> AssignmentDescriptions { get; set; }
 
         /// <summary>
-        /// Gets or sets the exam grade entries.
+        /// Gets or sets the quiz grades.
         /// </summary>
         /// <value>
-        /// The exam grade entries.
+        /// The quiz grades.
         /// </value>
-        public Dictionary<double, string> ExamGradeEntries { get; set; }
+        public IList<double> QuizGrades { get; set; }
+
+        /// <summary>
+        /// Gets or sets the quiz descriptions.
+        /// </summary>
+        /// <value>
+        /// The quiz descriptions.
+        /// </value>
+        public IList<string> QuizDescriptions { get; set; }
+
+        /// <summary>
+        /// Gets or sets the exam grades.
+        /// </summary>
+        /// <value>
+        /// The exam grades.
+        /// </value>
+        public IList<double> ExamGrades { get; set; }
+
+        /// <summary>
+        /// Gets or sets the exam descriptions.
+        /// </summary>
+        /// <value>
+        /// The exam descriptions.
+        /// </value>
+        public IList<string> ExamDescriptions { get; set; }
 
         /// <summary>
         /// Gets or sets the assignments weight.
@@ -67,9 +90,14 @@ namespace Grade_Calculator
         /// </summary>
         public SummaryWriter()
         {
-            this.AssignmentGradeEntries = new Dictionary<double, string>();
-            this.QuizGradeEntries = new Dictionary<double, string>();
-            this.ExamGradeEntries = new Dictionary<double, string>();
+            this.AssignmentGrades = new List<double>();
+            this.AssignmentDescriptions = new List<string>();
+
+            this.QuizGrades = new List<double>();
+            this.QuizDescriptions = new List<string>();
+
+            this.ExamGrades = new List<double>();
+            this.ExamDescriptions = new List<string>();
         }
 
         /// <summary>
