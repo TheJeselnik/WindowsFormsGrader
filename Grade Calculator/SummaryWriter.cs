@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace Grade_Calculator
@@ -139,7 +138,7 @@ namespace Grade_Calculator
             stringBuilder.Append($"Assignments average: {this.assignmentsAverage} Weight: {this.AssignmentsWeight}");
             for (var i=0; i<this.AssignmentGrades.Count; i++)
             {
-                stringBuilder.Append($"{this.AssignmentGrades[i]}: {this.AssignmentDescriptions[i]}");
+                stringBuilder.Append($"{Environment.NewLine}{this.AssignmentGrades[i]}: {this.AssignmentDescriptions[i]}");
             }
 
             stringBuilder.Append(Environment.NewLine + Environment.NewLine);
@@ -147,7 +146,7 @@ namespace Grade_Calculator
             stringBuilder.Append($"Quizzes average: {this.quizzesAverage} Weight: {this.QuizzesWeight}");
             for (var i = 0; i < this.QuizGrades.Count; i++)
             {
-                stringBuilder.Append($"{this.QuizGrades[i]}: {this.QuizDescriptions[i]}");
+                stringBuilder.Append($"{Environment.NewLine}{this.QuizGrades[i]}: {this.QuizDescriptions[i]}");
             }
 
             stringBuilder.Append(Environment.NewLine + Environment.NewLine);
@@ -155,7 +154,7 @@ namespace Grade_Calculator
             stringBuilder.Append($"Exams average: {this.examsAverage} Weight: {this.ExamsWeight}");
             for (var i = 0; i < this.ExamGrades.Count; i++)
             {
-                stringBuilder.Append($"{this.ExamGrades[i]}: {this.ExamDescriptions[i]}");
+                stringBuilder.Append($"{Environment.NewLine}{this.ExamGrades[i]}: {this.ExamDescriptions[i]}");
             }
 
             return stringBuilder.ToString();

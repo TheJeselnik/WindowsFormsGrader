@@ -65,6 +65,7 @@ namespace GradeControl
             foreach (DataGridViewRow row in this.gradeGridView.Rows)
             {
                 var checkBoxCell = (DataGridViewCheckBoxCell) row.Cells[0];
+                //TODO Check for only digits
                 var gradeCell = (double?) Convert.ToDouble(row.Cells[1].Value ?? 0.0);
 
                 if (Convert.ToBoolean(checkBoxCell.EditedFormattedValue))
