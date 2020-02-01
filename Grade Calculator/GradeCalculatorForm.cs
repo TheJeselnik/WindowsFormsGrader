@@ -39,13 +39,16 @@ namespace Grade_Calculator
 
         private void setSummaryWriterProperties()
         {
-            this.summaryWriter.AssignmentGradeEntries = this.assignmentsGradeControl.GradeValues;
+            this.summaryWriter.AssignmentGrades = this.assignmentsGradeControl.GradeValues;
+            this.summaryWriter.AssignmentDescriptions = this.assignmentsGradeControl.GradeDescriptions;
             this.summaryWriter.AssignmentsWeight = this.assignmentsGradeControl.Weight;
 
-            this.summaryWriter.QuizGradeEntries = this.quizzesGradeControl.GradeValues;
+            this.summaryWriter.QuizGrades = this.quizzesGradeControl.GradeValues;
+            this.summaryWriter.QuizDescriptions = this.quizzesGradeControl.GradeDescriptions;
             this.summaryWriter.QuizzesWeight = this.quizzesGradeControl.Weight;
 
-            this.summaryWriter.ExamGradeEntries = this.examsGradeControl.GradeValues;
+            this.summaryWriter.ExamGrades = this.examsGradeControl.GradeValues;
+            this.summaryWriter.ExamDescriptions = this.examsGradeControl.GradeDescriptions;
             this.summaryWriter.ExamsWeight = this.examsGradeControl.Weight;
         }
     }
