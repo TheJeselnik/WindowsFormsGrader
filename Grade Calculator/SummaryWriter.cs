@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace Grade_Calculator
@@ -14,13 +16,13 @@ namespace Grade_Calculator
         private const double DefaultAverage = 100.0;
         private const int WeightTotal = 100;
 
-        private static readonly string WeightPercentageWarning =
-            $"The Category Weights do not equal 100 {Environment.NewLine}";
+        private static readonly string WeightTotalWarning =
+            $"The category weights do not equal 100 {Environment.NewLine}";
 
         private double assignmentsAverage;
         private double quizzesAverage;
         private double examsAverage;
-        private double overallAverage;
+        private double overallGrade;
 
         #endregion
 
@@ -127,29 +129,79 @@ namespace Grade_Calculator
         /// <returns>Formatted Output Summary of Grades</returns>
         public string WriteSummaryOutput()
         {
-            this.resetAverages();
+            this.setAverages();
             
             var stringBuilder = new StringBuilder();
-            if (this.underCategoryWeightTotal())
+            this.displayWeightTotalWarning(stringBuilder);
+
+            stringBuilder.Append($"Overall grade: {this.overallGrade}{Environment.NewLine}{Environment.NewLine}");
+
+            stringBuilder.Append($"Assignments average: {this.assignmentsAverage} Weight: {this.AssignmentsWeight}");
+            for (var i=0; i<this.AssignmentGrades.Count; i++)
             {
-                stringBuilder.Append(WeightPercentageWarning);
+                stringBuilder.Append($"{this.AssignmentGrades[i]}: {this.AssignmentDescriptions[i]}");
+            }
+
+            stringBuilder.Append(Environment.NewLine + Environment.NewLine);
+
+            stringBuilder.Append($"Quizzes average: {this.quizzesAverage} Weight: {this.QuizzesWeight}");
+            for (var i = 0; i < this.QuizGrades.Count; i++)
+            {
+                stringBuilder.Append($"{this.QuizGrades[i]}: {this.QuizDescriptions[i]}");
+            }
+
+            stringBuilder.Append(Environment.NewLine + Environment.NewLine);
+
+            stringBuilder.Append($"Exams average: {this.examsAverage} Weight: {this.ExamsWeight}");
+            for (var i = 0; i < this.ExamGrades.Count; i++)
+            {
+                stringBuilder.Append($"{this.ExamGrades[i]}: {this.ExamDescriptions[i]}");
             }
 
             return stringBuilder.ToString();
         }
 
+        private void displayWeightTotalWarning(StringBuilder stringBuilder)
+        {
+            if (this.underCategoryWeightTotal())
+            {
+                stringBuilder.Append(WeightTotalWarning);
+            }
+        }
+
         private bool underCategoryWeightTotal()
         {
             var totalWeight = this.AssignmentsWeight + this.QuizzesWeight + this.ExamsWeight;
-            return !totalWeight.Equals(100.0);
+            return !totalWeight.Equals(WeightTotal);
         }
 
-        private void resetAverages()
+        private void setAverages()
         {
             this.assignmentsAverage = DefaultAverage;
+            if (this.AssignmentGrades.Count > 0)
+            {
+                this.assignmentsAverage = this.AssignmentGrades.Average();
+            }
+
+            var assignmentsWeightedAverage = this.assignmentsAverage * this.AssignmentsWeight;
+
             this.quizzesAverage = DefaultAverage;
+            if (this.QuizGrades.Count > 0)
+            {
+                this.quizzesAverage = this.QuizGrades.Average();
+            }
+
+            var quizzesWeightedAverage = this.quizzesAverage * this.QuizzesWeight;
+
             this.examsAverage = DefaultAverage;
-            this.overallAverage = DefaultAverage;
+            if (this.ExamGrades.Count > 0)
+            {
+                this.examsAverage = this.ExamGrades.Average();
+            }
+
+            var examsWeightedAverage = this.examsAverage * this.ExamsWeight;
+
+            this.overallGrade = assignmentsWeightedAverage + quizzesWeightedAverage + examsWeightedAverage;
         }
 
         #endregion
