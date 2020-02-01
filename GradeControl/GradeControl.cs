@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace GradeControl
@@ -65,12 +66,12 @@ namespace GradeControl
             foreach (DataGridViewRow row in this.gradeGridView.Rows)
             {
                 var checkBoxCell = (DataGridViewCheckBoxCell) row.Cells[0];
-                //TODO Check for only digits
-                var gradeCell = (double?) Convert.ToDouble(row.Cells[1].Value ?? 0.0);
+                var gradeCell = row.Cells[1].Value as string;
+                double.TryParse(gradeCell, out var parsedGradeCell);
 
                 if (Convert.ToBoolean(checkBoxCell.EditedFormattedValue))
                 {
-                    gradeValues.Add((double) gradeCell);
+                    gradeValues.Add(parsedGradeCell);
                 }
             }
 

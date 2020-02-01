@@ -33,7 +33,6 @@ namespace Grade_Calculator
 
         private void updateSummaryOutput()
         {
-            this.outputSummaryTextBox.Clear();
             this.outputSummaryTextBox.Text = this.summaryWriter.WriteSummaryOutput();
         }
 
