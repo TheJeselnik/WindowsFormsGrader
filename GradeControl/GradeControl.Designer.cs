@@ -120,7 +120,6 @@
             // 
             // gradeWeightUpDown
             // 
-            this.gradeWeightUpDown.DecimalPlaces = 2;
             this.gradeWeightUpDown.Location = new System.Drawing.Point(215, 247);
             this.gradeWeightUpDown.Name = "gradeWeightUpDown";
             this.gradeWeightUpDown.RightToLeft = System.Windows.Forms.RightToLeft.No;

@@ -61,7 +61,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GradeCalculator.cs" />
     <Compile Include="GradeCalculatorForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -57,12 +57,12 @@ namespace GradeControl
             foreach (DataGridViewRow row in this.gradeGridView.Rows)
             {
                 var checkBoxCell = (DataGridViewCheckBoxCell) row.Cells[0];
-                var gradeCell = Convert.ToDouble(row.Cells[1].Value);
-                var descriptionCell = row.Cells[2].Value.ToString();
+                var gradeCell = (double?)Convert.ToDouble(row.Cells[1].Value ?? 100.0);
+                var descriptionCell = row.Cells[2].Value as string;
 
                 if (Convert.ToBoolean(checkBoxCell.EditedFormattedValue))
                 {
-                    gradeDictionary.Add(gradeCell, descriptionCell);
+                    gradeDictionary.Add((double) gradeCell, descriptionCell);
                 }
             }
 
