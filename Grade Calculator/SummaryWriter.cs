@@ -129,32 +129,33 @@ namespace Grade_Calculator
         public string WriteSummaryOutput()
         {
             this.setAverages();
-            
+
             var stringBuilder = new StringBuilder();
             this.displayWeightTotalWarning(stringBuilder);
 
-            stringBuilder.Append($"Overall grade: {this.overallGrade}{Environment.NewLine}{Environment.NewLine}");
+            stringBuilder.Append($"Overall grade: {this.overallGrade:F}{Environment.NewLine}{Environment.NewLine}");
 
-            stringBuilder.Append($"Assignments average: {this.assignmentsAverage} Weight: {this.AssignmentsWeight}");
-            for (var i=0; i<this.AssignmentGrades.Count; i++)
+            stringBuilder.Append($"Assignments average: {this.assignmentsAverage:F} Weight: {this.AssignmentsWeight}");
+            for (var i = 0; i < this.AssignmentGrades.Count; i++)
             {
-                stringBuilder.Append($"{Environment.NewLine}{this.AssignmentGrades[i]}: {this.AssignmentDescriptions[i]}");
+                stringBuilder.Append(
+                    $"{Environment.NewLine}{this.AssignmentGrades[i]:F}: {this.AssignmentDescriptions[i]}");
             }
 
             stringBuilder.Append(Environment.NewLine + Environment.NewLine);
 
-            stringBuilder.Append($"Quizzes average: {this.quizzesAverage} Weight: {this.QuizzesWeight}");
+            stringBuilder.Append($"Quizzes average: {this.quizzesAverage:F} Weight: {this.QuizzesWeight}");
             for (var i = 0; i < this.QuizGrades.Count; i++)
             {
-                stringBuilder.Append($"{Environment.NewLine}{this.QuizGrades[i]}: {this.QuizDescriptions[i]}");
+                stringBuilder.Append($"{Environment.NewLine}{this.QuizGrades[i]:F}: {this.QuizDescriptions[i]}");
             }
 
             stringBuilder.Append(Environment.NewLine + Environment.NewLine);
 
-            stringBuilder.Append($"Exams average: {this.examsAverage} Weight: {this.ExamsWeight}");
+            stringBuilder.Append($"Exams average: {this.examsAverage:F} Weight: {this.ExamsWeight}");
             for (var i = 0; i < this.ExamGrades.Count; i++)
             {
-                stringBuilder.Append($"{Environment.NewLine}{this.ExamGrades[i]}: {this.ExamDescriptions[i]}");
+                stringBuilder.Append($"{Environment.NewLine}{this.ExamGrades[i]:F}: {this.ExamDescriptions[i]}");
             }
 
             return stringBuilder.ToString();
@@ -182,7 +183,7 @@ namespace Grade_Calculator
                 this.assignmentsAverage = this.AssignmentGrades.Average();
             }
 
-            var assignmentsWeightedAverage = this.assignmentsAverage * this.AssignmentsWeight;
+            var assignmentsWeightedAverage = this.assignmentsAverage * this.AssignmentsWeight / WeightTotal;
 
             this.quizzesAverage = DefaultAverage;
             if (this.QuizGrades.Count > 0)
@@ -190,7 +191,7 @@ namespace Grade_Calculator
                 this.quizzesAverage = this.QuizGrades.Average();
             }
 
-            var quizzesWeightedAverage = this.quizzesAverage * this.QuizzesWeight;
+            var quizzesWeightedAverage = this.quizzesAverage * this.QuizzesWeight / WeightTotal;
 
             this.examsAverage = DefaultAverage;
             if (this.ExamGrades.Count > 0)
@@ -198,7 +199,7 @@ namespace Grade_Calculator
                 this.examsAverage = this.ExamGrades.Average();
             }
 
-            var examsWeightedAverage = this.examsAverage * this.ExamsWeight;
+            var examsWeightedAverage = this.examsAverage * this.ExamsWeight / WeightTotal;
 
             this.overallGrade = assignmentsWeightedAverage + quizzesWeightedAverage + examsWeightedAverage;
         }

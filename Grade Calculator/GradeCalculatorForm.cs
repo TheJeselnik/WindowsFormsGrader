@@ -1,17 +1,23 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
 namespace Grade_Calculator
 {
     /// <summary>
-    /// 
+    ///     Handles to Form Operations, passes requests to classes and
+    ///     applies to the form.
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class GradeCalculatorForm : Form
     {
+        #region Data members
 
         private FileSerializer fileSerializer;
         private readonly SummaryWriter summaryWriter;
 
+        #endregion
+
+        #region Constructors
 
         public GradeCalculatorForm()
         {
@@ -25,7 +31,11 @@ namespace Grade_Calculator
             this.examsGradeControl.ControlUpdated += this.onControlUpdated;
         }
 
-        private void onControlUpdated(object sender, System.EventArgs e)
+        #endregion
+
+        #region Methods
+
+        private void onControlUpdated(object sender, EventArgs e)
         {
             this.setSummaryWriterProperties();
             this.updateSummaryOutput();
@@ -50,5 +60,7 @@ namespace Grade_Calculator
             this.summaryWriter.ExamDescriptions = this.examsGradeControl.GradeDescriptions;
             this.summaryWriter.ExamsWeight = this.examsGradeControl.Weight;
         }
+
+        #endregion
     }
 }
