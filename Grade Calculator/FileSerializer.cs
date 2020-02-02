@@ -10,12 +10,12 @@ namespace Grade_Calculator
     {
         #region Data members
 
-        private const string FileLocation = "~/gradeData.xml";
+        private const string FileLocation = "gradeData.xml";
 
         #endregion
 
         #region Methods
-        
+
         /// <summary>
         ///     Loads the grade entries.
         /// </summary>
@@ -36,7 +36,7 @@ namespace Grade_Calculator
         {
             var serializer = new XmlSerializer(typeof(GradeControl.GradeControl));
             var fileStream = new FileStream(FileLocation, FileMode.OpenOrCreate);
-            serializer.Serialize(fileStream, this);
+            serializer.Serialize(fileStream, gradeControl);
             fileStream.Close();
         }
 

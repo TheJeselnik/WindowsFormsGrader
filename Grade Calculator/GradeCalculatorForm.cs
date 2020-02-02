@@ -9,7 +9,7 @@ namespace Grade_Calculator
     public partial class GradeCalculatorForm : Form
     {
 
-        private FileSerializer fileSerializer;
+        private readonly FileSerializer fileSerializer;
         private readonly SummaryWriter summaryWriter;
 
 
@@ -23,6 +23,20 @@ namespace Grade_Calculator
             this.assignmentsGradeControl.ControlUpdated += this.onControlUpdated;
             this.quizzesGradeControl.ControlUpdated += this.onControlUpdated;
             this.examsGradeControl.ControlUpdated += this.onControlUpdated;
+        }
+
+        private void loadControls()
+        {
+            this.assignmentsGradeControl = this.fileSerializer.LoadGradeEntries();
+            this.quizzesGradeControl = this.fileSerializer.LoadGradeEntries();
+            this.examsGradeControl = this.fileSerializer.LoadGradeEntries();
+        }
+
+        private void saveControls()
+        {
+            this.fileSerializer.SaveGradeEntries(this.assignmentsGradeControl);
+            this.fileSerializer.SaveGradeEntries(this.quizzesGradeControl);
+            this.fileSerializer.SaveGradeEntries(this.examsGradeControl);
         }
 
         private void onControlUpdated(object sender, System.EventArgs e)
