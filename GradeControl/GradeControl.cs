@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace GradeControl
@@ -10,6 +9,7 @@ namespace GradeControl
     ///     its included grades contribute to the overall grade.
     /// </summary>
     /// <seealso cref="System.Windows.Forms.UserControl" />
+    [Serializable]
     public partial class GradeControl : UserControl
     {
         #region Properties

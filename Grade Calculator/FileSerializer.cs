@@ -1,4 +1,5 @@
-﻿using System.Xml.Serialization;
+﻿using System.IO;
+using System.Xml.Serialization;
 
 namespace Grade_Calculator
 {
@@ -7,23 +8,36 @@ namespace Grade_Calculator
     /// </summary>
     public class FileSerializer
     {
-        #region Methods
+        #region Data members
 
+        private const string FileLocation = "~/gradeData.xml";
+
+        #endregion
+
+        #region Methods
+        
         /// <summary>
         ///     Loads the grade entries.
         /// </summary>
-        public void LoadGradeEntries()
+        public GradeControl.GradeControl LoadGradeEntries()
         {
-            //TODO
+            var serializer = new XmlSerializer(typeof(GradeControl.GradeControl));
+            var fileStream = new FileStream(FileLocation, FileMode.OpenOrCreate);
+            var fromFile = serializer.Deserialize(fileStream) as GradeControl.GradeControl;
+            fileStream.Close();
+            return fromFile;
         }
 
         /// <summary>
         ///     Saves the grade entries.
         /// </summary>
-        public void SaveGradeEntries()
+        /// <param name="gradeControl">The grade control.</param>
+        public void SaveGradeEntries(GradeControl.GradeControl gradeControl)
         {
-            //var serializer = XmlSerializer();
-            //TODO
+            var serializer = new XmlSerializer(typeof(GradeControl.GradeControl));
+            var fileStream = new FileStream(FileLocation, FileMode.OpenOrCreate);
+            serializer.Serialize(fileStream, this);
+            fileStream.Close();
         }
 
         #endregion
