@@ -65,6 +65,8 @@
             this.gradeGridView.Name = "gradeGridView";
             this.gradeGridView.Size = new System.Drawing.Size(355, 225);
             this.gradeGridView.TabIndex = 1;
+            this.gradeGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gradeGridView_CellContentClick);
+            this.gradeGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.gradeGridView_CellEndEdit);
             this.gradeGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.gradeGridView_CellValueChanged);
             this.gradeGridView.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.gradeGridView_UserAddedRow);
             this.gradeGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.gradeGridView_UserDeletedRow);
@@ -109,6 +111,7 @@
             this.gradeWeightUpDown.TabIndex = 3;
             this.gradeWeightUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.gradeWeightUpDown.ValueChanged += new System.EventHandler(this.gradePercentUpDown_ValueChanged);
+            this.gradeWeightUpDown.KeyUp += new System.Windows.Forms.KeyEventHandler(this.gradeWeightUpDown_KeyUp);
             // 
             // includedCheckBoxColumn
             // 

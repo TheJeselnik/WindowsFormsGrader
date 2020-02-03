@@ -28,11 +28,13 @@ namespace Grade_Calculator
         {
             var serializer = new XmlSerializer(typeof(List<GradeCategory>));
             var fileStream = new FileStream(FileLocation, FileMode.OpenOrCreate);
+
             if (fileStream.Length.Equals(0))
             {
                 fileStream.Close();
                 return this.emptyGradeCategories;
             }
+
             var fromFile = serializer.Deserialize(fileStream) as List<GradeCategory>;
             fileStream.Close();
             return fromFile;

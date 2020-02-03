@@ -53,8 +53,8 @@ namespace Grade_Calculator
             var quizzesCategory = this.quizzesGradeControl.GradeCategory;
             var examsCategory = this.examsGradeControl.GradeCategory;
 
-
-            var gradeCategories = new List<GradeCategory> { assignmentsCategory, quizzesCategory, examsCategory
+            var gradeCategories = new List<GradeCategory> {
+                assignmentsCategory, quizzesCategory, examsCategory
             };
             this.fileSerializer.SaveGradeEntries(gradeCategories);
         }
@@ -67,6 +67,7 @@ namespace Grade_Calculator
 
         private void updateSummaryOutput()
         {
+            this.outputSummaryTextBox.Clear();
             this.outputSummaryTextBox.Text = this.summaryWriter.WriteSummaryOutput();
         }
 

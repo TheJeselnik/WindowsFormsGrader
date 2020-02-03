@@ -27,9 +27,13 @@ namespace GradeControl
 
         #endregion
 
+        #region Constructors
+
         public GradeCategory()
         {
             this.GradeEntries = new List<GradeEntry>();
         }
+
+        #endregion
     }
 }

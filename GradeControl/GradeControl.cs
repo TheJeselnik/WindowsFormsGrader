@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
-using System.Xml.Serialization;
 
 namespace GradeControl
 {
@@ -21,7 +19,6 @@ namespace GradeControl
         /// <value>
         ///     The grade values.
         /// </value>
-        [XmlIgnore]
         public IList<double> GradeValues => this.getGradeValues();
 
         /// <summary>
@@ -30,7 +27,6 @@ namespace GradeControl
         /// <value>
         ///     The grade descriptions.
         /// </value>
-        [XmlIgnore]
         public IList<string> GradeDescriptions => this.getGradeDescriptions();
 
         /// <summary>
@@ -39,7 +35,6 @@ namespace GradeControl
         /// <value>
         ///     The weight for the control's category.
         /// </value>
-        [XmlElement]
         public int Weight => (int) this.gradeWeightUpDown.Value;
 
         /// <summary>
@@ -181,7 +176,22 @@ namespace GradeControl
             this.onControlUpdated();
         }
 
+        private void gradeGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            this.onControlUpdated();
+        }
+
+        private void gradeGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            this.onControlUpdated();
+        }
+
         private void gradePercentUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            this.onControlUpdated();
+        }
+
+        private void gradeWeightUpDown_KeyUp(object sender, KeyEventArgs e)
         {
             this.onControlUpdated();
         }
