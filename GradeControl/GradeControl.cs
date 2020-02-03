@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace GradeControl
 {
@@ -20,6 +22,7 @@ namespace GradeControl
         /// <value>
         ///     The grade values.
         /// </value>
+        [XmlIgnore]
         public IList<double> GradeValues => this.getGradeValues();
 
         /// <summary>
@@ -28,6 +31,7 @@ namespace GradeControl
         /// <value>
         ///     The grade descriptions.
         /// </value>
+        [XmlIgnore]
         public IList<string> GradeDescriptions => this.getGradeDescriptions();
 
         /// <summary>
@@ -36,7 +40,17 @@ namespace GradeControl
         /// <value>
         ///     The weight for the control's category.
         /// </value>
+        [XmlElement]
         public int Weight => (int) this.gradeWeightUpDown.Value;
+
+        /// <summary>
+        ///     Gets the grade data set.
+        /// </summary>
+        /// <value>
+        ///     The grade data set.
+        /// </value>
+        [XmlElement]
+        public DataSet GradeDataSet => this.getGradeDataSet();
 
         #endregion
 
@@ -116,6 +130,32 @@ namespace GradeControl
             }
         }
 
+        private DataSet getGradeDataSet()
+        {
+            var dataSet = new DataSet();
+            var dataTable = new DataTable();
+
+            foreach (DataGridViewColumn column in this.gradeGridView.Columns)
+            {
+                dataTable.Columns.Add(column.Name);
+            }
+
+            foreach (DataGridViewRow row in this.gradeGridView.Rows)
+            {
+                var newRow = dataTable.NewRow();
+                foreach (DataGridViewCell rowCell in row.Cells)
+                {
+                    newRow[rowCell.ColumnIndex] = rowCell.Value;
+                }
+
+                dataTable.Rows.Add(newRow);
+            }
+
+            dataSet.Tables.Add(dataTable);
+
+            return dataSet;
+        }
+
         private void onControlUpdated()
         {
             this.ControlUpdated?.Invoke(this, EventArgs.Empty);
@@ -154,5 +194,7 @@ namespace GradeControl
         }
 
         #endregion
+
+        //potentially use this.gradeGridView.DataSource = ds to load data
     }
 }

@@ -1,17 +1,25 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Windows.Forms;
 
 namespace Grade_Calculator
 {
     /// <summary>
-    /// 
+    ///     Form containing a tab of Grade Controls, passes requests to classes and
+    ///     applies to the form.
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class GradeCalculatorForm : Form
     {
+        #region Data members
 
         private readonly FileSerializer fileSerializer;
         private readonly SummaryWriter summaryWriter;
 
+        #endregion
+
+        #region Constructors
 
         public GradeCalculatorForm()
         {
@@ -20,10 +28,16 @@ namespace Grade_Calculator
             this.fileSerializer = new FileSerializer();
             this.summaryWriter = new SummaryWriter();
 
+            //this.loadControls();
+
             this.assignmentsGradeControl.ControlUpdated += this.onControlUpdated;
             this.quizzesGradeControl.ControlUpdated += this.onControlUpdated;
             this.examsGradeControl.ControlUpdated += this.onControlUpdated;
         }
+
+        #endregion
+
+        #region Methods
 
         private void loadControls()
         {
@@ -34,12 +48,12 @@ namespace Grade_Calculator
 
         private void saveControls()
         {
-            this.fileSerializer.SaveGradeEntries(this.assignmentsGradeControl);
-            this.fileSerializer.SaveGradeEntries(this.quizzesGradeControl);
-            this.fileSerializer.SaveGradeEntries(this.examsGradeControl);
+            var dataSets = new List<DataSet>
+                {this.assignmentsGradeControl.GradeDataSet, this.quizzesGradeControl.GradeDataSet, this.examsGradeControl.GradeDataSet};
+            this.fileSerializer.SaveGradeEntries(dataSets);
         }
 
-        private void onControlUpdated(object sender, System.EventArgs e)
+        private void onControlUpdated(object sender, EventArgs e)
         {
             this.setSummaryWriterProperties();
             this.updateSummaryOutput();
@@ -64,5 +78,12 @@ namespace Grade_Calculator
             this.summaryWriter.ExamDescriptions = this.examsGradeControl.GradeDescriptions;
             this.summaryWriter.ExamsWeight = this.examsGradeControl.Weight;
         }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.saveControls();
+        }
+
+        #endregion
     }
 }

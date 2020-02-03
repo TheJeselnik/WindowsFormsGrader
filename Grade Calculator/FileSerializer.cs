@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Xml.Serialization;
 
 namespace Grade_Calculator
@@ -29,14 +31,14 @@ namespace Grade_Calculator
         }
 
         /// <summary>
-        ///     Saves the grade entries.
+        /// Saves the grade entries.
         /// </summary>
-        /// <param name="gradeControl">The grade control.</param>
-        public void SaveGradeEntries(GradeControl.GradeControl gradeControl)
+        /// <param name="dataSets">The grade controls.</param>
+        public void SaveGradeEntries(IList<DataSet> dataSets)
         {
-            var serializer = new XmlSerializer(typeof(GradeControl.GradeControl));
+            var serializer = new XmlSerializer(typeof(IList<DataSet>));
             var fileStream = new FileStream(FileLocation, FileMode.OpenOrCreate);
-            serializer.Serialize(fileStream, gradeControl);
+            serializer.Serialize(fileStream, dataSets);
             fileStream.Close();
         }
 
