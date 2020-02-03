@@ -31,14 +31,14 @@
             this.components = new System.ComponentModel.Container();
             this.assessedItemsLabel = new System.Windows.Forms.Label();
             this.gradeGridView = new System.Windows.Forms.DataGridView();
-            this.includedCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.gradeTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descriptionTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gradeGridContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.checkAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uncheckAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gradePercentLabel = new System.Windows.Forms.Label();
             this.gradeWeightUpDown = new System.Windows.Forms.NumericUpDown();
+            this.includedCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.gradeTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descriptionTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gradeGridView)).BeginInit();
             this.gradeGridContextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gradeWeightUpDown)).BeginInit();
@@ -68,24 +68,6 @@
             this.gradeGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.gradeGridView_CellValueChanged);
             this.gradeGridView.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.gradeGridView_UserAddedRow);
             this.gradeGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.gradeGridView_UserDeletedRow);
-            // 
-            // includedCheckBoxColumn
-            // 
-            this.includedCheckBoxColumn.HeaderText = "Included";
-            this.includedCheckBoxColumn.Name = "includedCheckBoxColumn";
-            this.includedCheckBoxColumn.Width = 55;
-            // 
-            // gradeTextBoxColumn
-            // 
-            this.gradeTextBoxColumn.HeaderText = "Grade";
-            this.gradeTextBoxColumn.Name = "gradeTextBoxColumn";
-            this.gradeTextBoxColumn.Width = 55;
-            // 
-            // descriptionTextBoxColumn
-            // 
-            this.descriptionTextBoxColumn.HeaderText = "Description";
-            this.descriptionTextBoxColumn.Name = "descriptionTextBoxColumn";
-            this.descriptionTextBoxColumn.Width = 200;
             // 
             // gradeGridContextMenu
             // 
@@ -128,6 +110,25 @@
             this.gradeWeightUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.gradeWeightUpDown.ValueChanged += new System.EventHandler(this.gradePercentUpDown_ValueChanged);
             // 
+            // includedCheckBoxColumn
+            // 
+            this.includedCheckBoxColumn.FalseValue = "False";
+            this.includedCheckBoxColumn.HeaderText = "Included";
+            this.includedCheckBoxColumn.Name = "includedCheckBoxColumn";
+            this.includedCheckBoxColumn.Width = 55;
+            // 
+            // gradeTextBoxColumn
+            // 
+            this.gradeTextBoxColumn.HeaderText = "Grade";
+            this.gradeTextBoxColumn.Name = "gradeTextBoxColumn";
+            this.gradeTextBoxColumn.Width = 55;
+            // 
+            // descriptionTextBoxColumn
+            // 
+            this.descriptionTextBoxColumn.HeaderText = "Description";
+            this.descriptionTextBoxColumn.Name = "descriptionTextBoxColumn";
+            this.descriptionTextBoxColumn.Width = 200;
+            // 
             // GradeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -150,13 +151,13 @@
 
         private System.Windows.Forms.Label assessedItemsLabel;
         private System.Windows.Forms.DataGridView gradeGridView;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn includedCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn gradeTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descriptionTextBoxColumn;
         private System.Windows.Forms.Label gradePercentLabel;
         private System.Windows.Forms.NumericUpDown gradeWeightUpDown;
         private System.Windows.Forms.ContextMenuStrip gradeGridContextMenu;
         private System.Windows.Forms.ToolStripMenuItem checkAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uncheckAllToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn includedCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn gradeTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descriptionTextBoxColumn;
     }
 }

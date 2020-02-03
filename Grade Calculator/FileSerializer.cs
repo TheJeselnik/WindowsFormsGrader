@@ -12,7 +12,7 @@ namespace Grade_Calculator
     {
         #region Data members
 
-        private const string FileLocation = "gradeData.xml";
+        private const string FileLocation = "C:\\temp\\gradeData.xml";
 
         #endregion
 

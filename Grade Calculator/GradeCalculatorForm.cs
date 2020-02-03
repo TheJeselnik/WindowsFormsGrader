@@ -28,7 +28,7 @@ namespace Grade_Calculator
             this.fileSerializer = new FileSerializer();
             this.summaryWriter = new SummaryWriter();
 
-            //this.loadControls();
+            this.loadControls();
 
             this.assignmentsGradeControl.ControlUpdated += this.onControlUpdated;
             this.quizzesGradeControl.ControlUpdated += this.onControlUpdated;
@@ -42,6 +42,9 @@ namespace Grade_Calculator
         private void loadControls()
         {
             var dataSets = this.fileSerializer.LoadGradeEntries();
+            this.assignmentsGradeControl.LoadDataIntoGradeGridView(dataSets[0]);
+            this.quizzesGradeControl.LoadDataIntoGradeGridView(dataSets[1]);
+            this.examsGradeControl.LoadDataIntoGradeGridView(dataSets[2]);
         }
 
         private void saveControls()

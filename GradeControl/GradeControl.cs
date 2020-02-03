@@ -68,6 +68,11 @@ namespace GradeControl
 
         #region Methods
 
+        public void LoadDataIntoGradeGridView(DataSet dataSet)
+        {
+            this.gradeGridView.DataSource = dataSet.Tables[0];
+        }
+
         /// <summary>
         ///     Occurs when the control is updated.
         /// </summary>
