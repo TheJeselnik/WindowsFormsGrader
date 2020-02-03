@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 
@@ -11,7 +11,6 @@ namespace GradeControl
     ///     its included grades contribute to the overall grade.
     /// </summary>
     /// <seealso cref="System.Windows.Forms.UserControl" />
-    [Serializable]
     public partial class GradeControl : UserControl
     {
         #region Properties
@@ -44,13 +43,12 @@ namespace GradeControl
         public int Weight => (int) this.gradeWeightUpDown.Value;
 
         /// <summary>
-        ///     Gets the grade data set.
+        ///     Gets the grade category.
         /// </summary>
         /// <value>
-        ///     The grade data set.
+        ///     The grade category.
         /// </value>
-        [XmlElement]
-        public DataSet GradeDataSet => this.getGradeDataSet();
+        public GradeCategory GradeCategory => this.getGradeCategory();
 
         #endregion
 
@@ -68,9 +66,18 @@ namespace GradeControl
 
         #region Methods
 
-        public void LoadDataIntoGradeGridView(DataSet dataSet)
+        /// <summary>
+        ///     Loads the data into grade grid view.
+        /// </summary>
+        /// <param name="gradeCategory">The grade category.</param>
+        public void LoadDataIntoGradeGridView(GradeCategory gradeCategory)
         {
-            this.gradeGridView.DataSource = dataSet.Tables[0];
+            this.gradeWeightUpDown.Value = gradeCategory.Weight;
+
+            foreach (var gradeEntry in gradeCategory.GradeEntries)
+            {
+                this.gradeGridView.Rows.Add(gradeEntry.Included, gradeEntry.Grade, gradeEntry.Description);
+            }
         }
 
         /// <summary>
@@ -135,30 +142,23 @@ namespace GradeControl
             }
         }
 
-        private DataSet getGradeDataSet()
+        private GradeCategory getGradeCategory()
         {
-            var dataSet = new DataSet();
-            var dataTable = new DataTable();
-
-            foreach (DataGridViewColumn column in this.gradeGridView.Columns)
-            {
-                dataTable.Columns.Add(column.Name);
-            }
-
+            var gradeEntries = new List<GradeEntry>();
             foreach (DataGridViewRow row in this.gradeGridView.Rows)
             {
-                var newRow = dataTable.NewRow();
-                foreach (DataGridViewCell rowCell in row.Cells)
-                {
-                    newRow[rowCell.ColumnIndex] = rowCell.Value;
-                }
+                var gradeEntry = new GradeEntry {
+                    Included = Convert.ToBoolean(row.Cells[0].Value),
+                    Grade = row.Cells[1].Value as string,
+                    Description = row.Cells[2].Value as string
+                };
 
-                dataTable.Rows.Add(newRow);
+                gradeEntries.Add(gradeEntry);
             }
 
-            dataSet.Tables.Add(dataTable);
+            var gradeCategory = new GradeCategory {GradeEntries = gradeEntries, Weight = this.Weight};
 
-            return dataSet;
+            return gradeCategory;
         }
 
         private void onControlUpdated()
@@ -199,7 +199,5 @@ namespace GradeControl
         }
 
         #endregion
-
-        //potentially use this.gradeGridView.DataSource = ds to load data
     }
 }

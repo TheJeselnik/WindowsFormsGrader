@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Windows.Forms;
+using GradeControl;
 
 namespace Grade_Calculator
 {
@@ -41,19 +41,22 @@ namespace Grade_Calculator
 
         private void loadControls()
         {
-            var dataSets = this.fileSerializer.LoadGradeEntries();
-            this.assignmentsGradeControl.LoadDataIntoGradeGridView(dataSets[0]);
-            this.quizzesGradeControl.LoadDataIntoGradeGridView(dataSets[1]);
-            this.examsGradeControl.LoadDataIntoGradeGridView(dataSets[2]);
+            var gradeCategories = this.fileSerializer.LoadGradeEntries();
+            this.assignmentsGradeControl.LoadDataIntoGradeGridView(gradeCategories[0]);
+            this.quizzesGradeControl.LoadDataIntoGradeGridView(gradeCategories[1]);
+            this.examsGradeControl.LoadDataIntoGradeGridView(gradeCategories[2]);
         }
 
         private void saveControls()
         {
-            var dataSets = new List<DataSet> {
-                this.assignmentsGradeControl.GradeDataSet, this.quizzesGradeControl.GradeDataSet,
-                this.examsGradeControl.GradeDataSet
+            var assignmentsCategory = this.assignmentsGradeControl.GradeCategory;
+            var quizzesCategory = this.quizzesGradeControl.GradeCategory;
+            var examsCategory = this.examsGradeControl.GradeCategory;
+
+
+            var gradeCategories = new List<GradeCategory> { assignmentsCategory, quizzesCategory, examsCategory
             };
-            this.fileSerializer.SaveGradeEntries(dataSets);
+            this.fileSerializer.SaveGradeEntries(gradeCategories);
         }
 
         private void onControlUpdated(object sender, EventArgs e)
