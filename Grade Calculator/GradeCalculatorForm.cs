@@ -41,15 +41,15 @@ namespace Grade_Calculator
 
         private void loadControls()
         {
-            this.assignmentsGradeControl = this.fileSerializer.LoadGradeEntries();
-            this.quizzesGradeControl = this.fileSerializer.LoadGradeEntries();
-            this.examsGradeControl = this.fileSerializer.LoadGradeEntries();
+            var dataSets = this.fileSerializer.LoadGradeEntries();
         }
 
         private void saveControls()
         {
-            var dataSets = new List<DataSet>
-                {this.assignmentsGradeControl.GradeDataSet, this.quizzesGradeControl.GradeDataSet, this.examsGradeControl.GradeDataSet};
+            var dataSets = new List<DataSet> {
+                this.assignmentsGradeControl.GradeDataSet, this.quizzesGradeControl.GradeDataSet,
+                this.examsGradeControl.GradeDataSet
+            };
             this.fileSerializer.SaveGradeEntries(dataSets);
         }
 

@@ -21,11 +21,11 @@ namespace Grade_Calculator
         /// <summary>
         ///     Loads the grade entries.
         /// </summary>
-        public GradeControl.GradeControl LoadGradeEntries()
+        public List<DataSet> LoadGradeEntries()
         {
-            var serializer = new XmlSerializer(typeof(GradeControl.GradeControl));
+            var serializer = new XmlSerializer(typeof(List<DataSet>));
             var fileStream = new FileStream(FileLocation, FileMode.OpenOrCreate);
-            var fromFile = serializer.Deserialize(fileStream) as GradeControl.GradeControl;
+            var fromFile = serializer.Deserialize(fileStream) as List<DataSet>;
             fileStream.Close();
             return fromFile;
         }
@@ -34,9 +34,9 @@ namespace Grade_Calculator
         /// Saves the grade entries.
         /// </summary>
         /// <param name="dataSets">The grade controls.</param>
-        public void SaveGradeEntries(IList<DataSet> dataSets)
+        public void SaveGradeEntries(List<DataSet> dataSets)
         {
-            var serializer = new XmlSerializer(typeof(IList<DataSet>));
+            var serializer = new XmlSerializer(typeof(List<DataSet>));
             var fileStream = new FileStream(FileLocation, FileMode.OpenOrCreate);
             serializer.Serialize(fileStream, dataSets);
             fileStream.Close();
