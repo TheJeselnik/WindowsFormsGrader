@@ -9,6 +9,7 @@ namespace GradeControl
     ///     its included grades contribute to the overall grade.
     /// </summary>
     /// <seealso cref="System.Windows.Forms.UserControl" />
+    [Serializable]
     public partial class GradeControl : UserControl
     {
         #region Properties

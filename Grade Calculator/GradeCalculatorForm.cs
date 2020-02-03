@@ -1,23 +1,17 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace Grade_Calculator
 {
     /// <summary>
-    ///     Handles to Form Operations, passes requests to classes and
-    ///     applies to the form.
+    /// 
     /// </summary>
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class GradeCalculatorForm : Form
     {
-        #region Data members
 
-        private FileSerializer fileSerializer;
+        private readonly FileSerializer fileSerializer;
         private readonly SummaryWriter summaryWriter;
 
-        #endregion
-
-        #region Constructors
 
         public GradeCalculatorForm()
         {
@@ -31,11 +25,21 @@ namespace Grade_Calculator
             this.examsGradeControl.ControlUpdated += this.onControlUpdated;
         }
 
-        #endregion
+        private void loadControls()
+        {
+            this.assignmentsGradeControl = this.fileSerializer.LoadGradeEntries();
+            this.quizzesGradeControl = this.fileSerializer.LoadGradeEntries();
+            this.examsGradeControl = this.fileSerializer.LoadGradeEntries();
+        }
 
-        #region Methods
+        private void saveControls()
+        {
+            this.fileSerializer.SaveGradeEntries(this.assignmentsGradeControl);
+            this.fileSerializer.SaveGradeEntries(this.quizzesGradeControl);
+            this.fileSerializer.SaveGradeEntries(this.examsGradeControl);
+        }
 
-        private void onControlUpdated(object sender, EventArgs e)
+        private void onControlUpdated(object sender, System.EventArgs e)
         {
             this.setSummaryWriterProperties();
             this.updateSummaryOutput();
@@ -60,7 +64,5 @@ namespace Grade_Calculator
             this.summaryWriter.ExamDescriptions = this.examsGradeControl.GradeDescriptions;
             this.summaryWriter.ExamsWeight = this.examsGradeControl.Weight;
         }
-
-        #endregion
     }
 }
